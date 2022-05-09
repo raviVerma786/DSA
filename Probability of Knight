@@ -1,5 +1,6 @@
-/* Ques: Given an NxN chessboard and a Knight at position (x, y). The Knight has to take exactly K steps, where at each step it chooses any of the 8 directions uniformly at random. Find the probability that the Knight remains in the chessboard after taking K steps, with the condition that it cant enter the board again once it leaves it.*/
-
+/* Ques: Given an NxN chessboard and a Knight at position (x, y). The Knight has to take exactly K steps, where at each step it chooses any of the 8 directions 
+uniformly at random. Find the probability that the Knight remains in the chessboard after taking K steps, with the condition that it cant enter the board again 
+once it leaves it.*/
 /* test cases: 
 Example 1:
 Input : N = 8, x = 0, y = 0, K = 3
