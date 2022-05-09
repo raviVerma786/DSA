@@ -1,0 +1,91 @@
+/* Ques: Given an NxN chessboard and a Knight at position (x, y). The Knight has to take exactly K steps, where at each step it chooses any of the 8 directions uniformly at random. Find the probability that the Knight remains in the chessboard after taking K steps, with the condition that it cant enter the board again once it leaves it.*/
+
+/* test cases: 
+Example 1:
+Input : N = 8, x = 0, y = 0, K = 3
+Output: 0.125000
+
+Example 2:
+Input: N = 4, x = 1, y = 2, k = 4
+Output: 0.024414
+*/
+//Ques Link : https://practice.geeksforgeeks.org/problems/probability-of-knight5529/1#
+//code: 
+double findProb(int N,int x, int y, int steps)
+	{
+	    // Code here
+	    double curr[N][N];
+	    double next[N][N];
+	    for(int i=0;i<N;i++){
+	        for(int j=0;j<N;j++){
+	            curr[i][j]=0;
+	            next[i][j]=0;
+	        }
+	    }
+	    curr[x][y]=1;
+	    for(int i=0;i<steps;i++){
+	        for(int row=0;row<N;row++){
+	            for(int col=0;col<N;col++){
+	                if(curr[row][col]==0) continue;
+	                int next_row = 0;
+	                int next_col = 0;
+	                //here total 8 cases
+	                next_row = row + 2;
+	                next_col = col - 1;
+	                if(next_row >=0 && next_col >=0 && next_row<N && next_col<N){
+	                    next[next_row][next_col] += curr[row][col]/8.0;
+	                }
+	                next_row = row + 2;
+	                next_col = col + 1;
+	                if(next_row >=0 && next_col >=0 && next_row<N && next_col<N){
+	                    next[next_row][next_col] += curr[row][col]/8.0;
+	                }
+	                next_row = row - 1;
+	                next_col = col + 2;
+	                if(next_row >=0 && next_col >=0 && next_row<N && next_col<N){
+	                    next[next_row][next_col] += curr[row][col]/8.0;
+	                }
+	                next_row = row + 1;
+	                next_col = col + 2;
+	                if(next_row >=0 && next_col >=0 && next_row<N && next_col<N){
+	                    next[next_row][next_col] += curr[row][col]/8.0;
+	                }
+	                next_row = row - 2;
+	                next_col = col + 1;
+	                if(next_row >=0 && next_col >=0 && next_row<N && next_col<N){
+	                    next[next_row][next_col] += curr[row][col]/8.0;
+	                }
+	                next_row = row - 2;
+	                next_col = col - 1;
+	                if(next_row >=0 && next_col >=0 && next_row<N && next_col<N){
+	                    next[next_row][next_col] += curr[row][col]/8.0;
+	                }
+	                 next_row = row + 1;
+	                next_col = col - 2;
+	                if(next_row >=0 && next_col >=0 && next_row<N && next_col<N){
+	                    next[next_row][next_col] += curr[row][col]/8.0;
+	                }
+	                next_row = row - 1;
+	                next_col = col - 2;
+	                if(next_row >=0 && next_col >=0 && next_row<N && next_col<N){
+	                    next[next_row][next_col] += curr[row][col]/8.0;
+	                }
+	            }
+	        }
+	        //make make next array as current array i.e copy asd make new
+	        //next array i.e make all elements of next array 0
+	       for(int i=0;i<N;i++){
+	        for(int j=0;j<N;j++){
+	            curr[i][j] = next[i][j];
+	            next[i][j] = 0;
+	        }
+	    }
+	    }
+	    double ans = 0;
+	    for(int i=0;i<N;i++){
+	        for(int j=0;j<N;j++){
+	            ans += curr[i][j];
+	        }
+	    }
+	    return ans;
+	}
